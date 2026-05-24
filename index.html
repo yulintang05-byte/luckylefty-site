@@ -3,48 +3,232 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LuckyLefty
+  <title>@luckylefty0511 — Links & Faves</title>
+  <meta name="description" content="Nurse. Creator. Night shift survivor. My favorite links, deals, and resources.">
   <style>
+    :root {
+      --pink: #e8748a;
+      --pink-light: #fef0f3;
+      --dark: #1a0a10;
+      --gray: #6b7280;
+      --card: #ffffff;
+      --border: #f3e8ec;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fafafa; color: #1a1a1a; }
-    header { background: #fff; border-bottom: 1px solid #eee; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
-    header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; }
-    header nav a { margin-left: 24px; text-decoration: none; color: #555; font-size: 0.9rem; }
-    .hero { text-align: center; padding: 80px 40px; }
-    .hero h2 { font-size: 2.4rem; font-weight: 800; margin-bottom: 16px; }
-    .hero p { font-size: 1.1rem; color: #666; max-width: 500px; margin: 0 auto 32px; line-height: 1.6; }
-    .cta { background: #1a1a1a; color: #fff; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-    .products { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; padding: 60px 40px; background: #fff; }
-    .product-card { border: 1px solid #eee; border-radius: 12px; padding: 28px; width: 220px; text-align: center; }
-    .product-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .product-card p { font-size: 0.85rem; color: #777; line-height: 1.5; }
-    footer { text-align: center; padding: 40px; color: #999; font-size: 0.85rem; }
-    footer a { color: #999; margin: 0 12px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(160deg, #fff5f7 0%, #fce7f3 40%, #f0fdf4 100%);
+      min-height: 100vh;
+      color: var(--dark);
+    }
+    .container { max-width: 480px; margin: 0 auto; padding: 32px 20px 60px; }
+
+    /* Profile */
+    .profile { text-align: center; margin-bottom: 32px; }
+    .avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), #a855f7);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; margin: 0 auto 14px;
+      box-shadow: 0 4px 20px rgba(232,116,138,.3);
+    }
+    .profile h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.3px; }
+    .profile .handle { color: var(--pink); font-size: 0.95rem; font-weight: 600; margin: 2px 0 10px; }
+    .profile .bio {
+      font-size: 0.9rem; color: var(--gray); line-height: 1.55;
+      max-width: 340px; margin: 0 auto;
+    }
+
+    /* Social row */
+    .socials {
+      display: flex; justify-content: center; gap: 12px;
+      margin: 18px 0 30px;
+    }
+    .social-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: 999px; padding: 7px 16px;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      color: var(--dark); transition: all 0.15s;
+    }
+    .social-btn:hover { background: var(--pink-light); border-color: var(--pink); }
+
+    /* Section label */
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--gray);
+      margin: 28px 0 12px; padding: 0 2px;
+    }
+
+    /* Link card */
+    .link-card {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 16px 18px;
+      text-decoration: none; color: var(--dark);
+      margin-bottom: 10px;
+      transition: all 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .link-card:hover {
+      border-color: var(--pink);
+      box-shadow: 0 4px 16px rgba(232,116,138,.15);
+      transform: translateY(-1px);
+    }
+    .link-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .link-info { flex: 1; }
+    .link-title { font-size: 0.97rem; font-weight: 700; line-height: 1.2; }
+    .link-sub { font-size: 0.8rem; color: var(--gray); margin-top: 3px; }
+    .link-badge {
+      font-size: 0.72rem; font-weight: 700; padding: 3px 9px;
+      border-radius: 999px; flex-shrink: 0;
+    }
+    .badge-hot { background: #fef2f2; color: #dc2626; }
+    .badge-new { background: #f0fdf4; color: #16a34a; }
+    .badge-earn { background: var(--pink-light); color: var(--pink); }
+    .badge-free { background: #f5f3ff; color: #7c3aed; }
+
+    /* Featured card */
+    .link-card.featured {
+      background: linear-gradient(135deg, #1a0a10 0%, #3d1025 100%);
+      border-color: var(--pink);
+      color: #fff;
+    }
+    .link-card.featured .link-sub { color: rgba(255,255,255,.65); }
+    .link-card.featured .link-badge { background: var(--pink); color: #fff; }
+
+    /* Footer */
+    footer {
+      text-align: center; margin-top: 40px;
+      font-size: 0.78rem; color: var(--gray); line-height: 1.7;
+    }
+    footer a { color: var(--gray); }
+    .disclaimer {
+      background: rgba(255,255,255,.6); border-radius: 10px;
+      padding: 12px 16px; font-size: 0.76rem; color: var(--gray);
+      margin-top: 24px; line-height: 1.6;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>✨ LuckyLefty</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-    </nav>
-  </header>
-  <div class="hero">
-    <h2>Beauty That Works</h2>
-    <p>Discover curated beauty products for glowing skin, effortless style, and everyday confidence.</p>
-    <a class="cta" href="https://www.etsy.com/shop/luckylefty0511" target="_blank">Shop Now</a>
+<div class="container">
+
+  <!-- Profile -->
+  <div class="profile">
+    <div class="avatar">🩺</div>
+    <h1>LuckyLefty</h1>
+    <div class="handle">@luckylefty0511</div>
+    <p class="bio">Nurse. Night shift survivor. Building passive income one shift at a time. 🏥✨</p>
   </div>
-  <div class="products">
-    <div class="product-card"><h3>24K Gold Serum</h3><p>Luxury skin treatment for radiant, youthful glow.</p></div>
-    <div class="product-card"><h3>Thermal Brush</h3><p>Salon-quality styling at home in minutes.</p></div>
-    <div class="product-card"><h3>Collagen Mask</h3><p>Deep hydration and firming for smooth skin.</p></div>
-    <div class="product-card"><h3>Body Glaze</h3><p>Luminous all-over body glow for any occasion.</p></div>
+
+  <!-- Social links -->
+  <div class="socials">
+    <a class="social-btn" href="https://www.tiktok.com/@luckylefty0511" target="_blank">
+      <span>🎵</span> TikTok
+    </a>
+    <a class="social-btn" href="https://www.etsy.com/shop/luckylefty0511" target="_blank">
+      <span>🛍</span> Etsy
+    </a>
   </div>
+
+  <!-- Shop -->
+  <div class="section-label">🛒 My Nurse Shop</div>
+
+  <a class="link-card featured" href="https://www.etsy.com/shop/luckylefty0511" target="_blank">
+    <div class="link-icon" style="background:rgba(255,255,255,.15);">🩺</div>
+    <div class="link-info">
+      <div class="link-title">Nurse Tees, Mugs & Beauty Bags</div>
+      <div class="link-sub">Dark humor. Night shift energy. 177+ products on Etsy.</div>
+    </div>
+    <span class="link-badge">Shop</span>
+  </a>
+
+  <!-- Earn -->
+  <div class="section-label">💸 Passive Income I Actually Use</div>
+
+  <a class="link-card" href="https://whop.com/inner-circle-fc/?a=yulin" target="_blank">
+    <div class="link-icon" style="background:#fff7ed;">🚀</div>
+    <div class="link-info">
+      <div class="link-title">TTW Inner Circle — TikTok Money</div>
+      <div class="link-sub">How I turned nurse content into income. The course that taught me.</div>
+    </div>
+    <span class="link-badge badge-hot">$300 off</span>
+  </a>
+
+  <a class="link-card" href="https://whop.com/bravosixpicks/?a=yulin" target="_blank">
+    <div class="link-icon" style="background:#f0fdf4;">🏆</div>
+    <div class="link-info">
+      <div class="link-title">Bravo Six Picks — Sports Picks</div>
+      <div class="link-sub">5.0 stars · 5,000+ members · I check this during slow nights.</div>
+    </div>
+    <span class="link-badge badge-earn">50% off</span>
+  </a>
+
+  <a class="link-card" href="https://whop.com/blxqinvests/?a=yulin" target="_blank">
+    <div class="link-icon" style="background:#faf5ff;">📈</div>
+    <div class="link-info">
+      <div class="link-title">Blxq Invests — Options Alerts</div>
+      <div class="link-sub">23K+ members · Trading signals for nurses with downtime.</div>
+    </div>
+    <span class="link-badge badge-earn">50% off</span>
+  </a>
+
+  <!-- Clipping -->
+  <div class="section-label">🎬 Content & Clipping</div>
+
+  <a class="link-card" href="https://clipping.net/dashboard" target="_blank">
+    <div class="link-icon" style="background:#fef3c7;">✂️</div>
+    <div class="link-info">
+      <div class="link-title">Clipping.net — Get Paid to Post</div>
+      <div class="link-sub">Join campaigns. Clip viral videos. Earn per 1,000 views. Up to $250/100K.</div>
+    </div>
+    <span class="link-badge badge-new">Up to $2.50/K</span>
+  </a>
+
+  <!-- Beauty faves -->
+  <div class="section-label">✨ Nurse Beauty Faves (Amazon)</div>
+
+  <a class="link-card" href="https://www.amazon.com/dp/B0FX44SRZ2" target="_blank">
+    <div class="link-icon" style="background:#fdf2f8;">😷</div>
+    <div class="link-info">
+      <div class="link-title">Lord Have MRSA Badge Reel</div>
+      <div class="link-sub">The funniest badge reel for nurses — retractable ID holder. $6.99</div>
+    </div>
+    <span class="link-badge badge-free">$7</span>
+  </a>
+
+  <a class="link-card" href="https://www.amazon.com/dp/B0CYBNZV8Z" target="_blank">
+    <div class="link-icon" style="background:#fff7ed;">📛</div>
+    <div class="link-info">
+      <div class="link-title">Funny Nurse Badge Reels 24-Pack</div>
+      <div class="link-sub">Retractable ID clips — perfect gift for any nurse. $25.99</div>
+    </div>
+    <span class="link-badge badge-free">$26</span>
+  </a>
+
+  <a class="link-card" href="https://www.amazon.com/dp/B0B4DGPYKK" target="_blank">
+    <div class="link-icon" style="background:#f0fdf4;">🧦</div>
+    <div class="link-info">
+      <div class="link-title">Funny Nurse Crew Socks Gift Set</div>
+      <div class="link-sub">Jeasona nurse humor socks — nurses week staple. $14.99</div>
+    </div>
+    <span class="link-badge badge-free">$15</span>
+  </a>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    ⚡ Some links above are affiliate links — I earn a small commission if you buy, at no extra cost to you. I only share products I actually use or believe in. 🩺
+  </div>
+
   <footer>
-    <p>© 2026 LuckyLefty. All rights reserved.</p>
-    <p style="margin-top:8px"><a href="/privacy.html">Privacy Policy</a> <a href="/terms.html">Terms of Service</a></p>
+    <p>© 2026 @luckylefty0511 · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    <p style="margin-top:6px">Built for nurses who hustle 🏥</p>
   </footer>
+
+</div>
 </body>
 </html>
